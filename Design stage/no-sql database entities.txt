@@ -1,0 +1,58 @@
+- USERS : {
+	'id_user',  // Unique identifier for the user
+	'rol': {'student','admin'},  // Role of the user
+	'user': integer (UK),  // Unique, typically an identity document number
+	'password': string,  // User's password
+	'position': string,  // Position or role in the organization
+	'cellphone_number': integer,  // Contact number
+	'name': string,  // User's first name
+	'last_name': string,  // User's last name
+	'email': string (UK),  // Unique, email address of the user
+	'information': long,  // Additional information about the user
+	'city': string,  // City where the user is based
+	'photo' -> id_photo,  // Reference to the user's photo
+	'projects' -> list[]  (id_projects),  // List of project IDs the user is associated with
+	'publications' -> list[] (id_publications)  // List of publication IDs the user is associated with
+}
+
+- PROJECTS : {	
+	'id_project',  // Unique identifier for the project
+	'title': { 'en': string, 'es': string },  // Title in English and Spanish
+	'date': string,  // Date of the project
+	'photo' -> id_photo,  // Reference to the project's photo
+	'members': list[] (id_members),  // List of member IDs involved in the project
+	'description': { 'en': string, 'es': string },  // Detailed description in English and Spanish
+	'short_description': { 'en': string, 'es': string }  // Short description in English and Spanish
+}
+
+- NEWS : {	
+	'id_new',  // Unique identifier for the news item
+	'title': { 'en': string, 'es': string },  // Title in English and Spanish
+	'date': string,  // Date of the news
+	'photo' -> id_photo,  // Reference to the news photo
+	'description': { 'en': string, 'es': string },  // Detailed description in English and Spanish
+	'short_description': { 'en': string, 'es': string }  // Short description in English and Spanish
+}
+
+- PUBLICATIONS : {	
+	'id_publications',  // Unique identifier for the publication
+	'title': { 'en': string, 'es': string },  // Title in English and Spanish
+	'date': string,  // Date of the publication
+	'photo' -> id_photo,  // Reference to the publication's photo
+	'description': { 'en': string, 'es': string },  // Detailed description in English and Spanish
+	'members': list[] (id_members),  // List of member IDs involved in the publication
+	'short_description': { 'en': string, 'es': string }  // Short description in English and Spanish
+}
+
+- DATASETS: {
+	'id_dataset': string,  // Unique identifier for the dataset
+	'photo' -> id_photo,  // Reference to the dataset's photo
+	'description': { 'en': string, 'es': string },  // Detailed description in English and Spanish
+	'link': string  // Link to access the dataset
+}
+
+- COURSES: {
+	'id_course': string,  // Unique identifier for the course
+	'description': { 'en': string, 'es': string },  // Description in English and Spanish
+	'link': string  // Link to access the course
+}
