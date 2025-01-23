@@ -1,11 +1,11 @@
-FROM node:latest as build-stage
+FROM node:22.13.1 as build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY ./ .
+COPY ./ /app
 RUN npm run build
 
-FROM nginx as production-stage
+FROM nginx:stable as production-stage
 RUN mkdir /app
 COPY --from=build-stage /app/dist /app
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
