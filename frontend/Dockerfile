@@ -19,14 +19,19 @@ RUN npm run build
 # Etapa 2: Servir los archivos con NGINX
 FROM nginx:stable as production-stage
 
+
+
 # Copiar los archivos estáticos de la etapa de construcción
 COPY --from=build-stage /app/dist /app
+
+# Eliminar la configuración por defecto de Nginx
+RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/nginx.conf
 
 # Copiar la configuración personalizada de Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Expose the port 80
-EXPOSE 80
-
 # Start Nginx to serve the application
 CMD ["nginx", "-g", "daemon off;"]
+
+
